@@ -28,7 +28,7 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/blog', function () {
+Route::get('/posts', function () {
     $blog_posts = [
         [
             'title' => 'Judul Post Pertama',
@@ -47,5 +47,11 @@ Route::get('/blog', function () {
     return view('posts', [
         'title' => 'Blog',
         'posts' => $blog_posts
+    ]);
+});
+
+Route::get('posts/{slug}', function($slug) {
+    return view('post', [
+        'title' => 'Single Post'
     ]);
 });
