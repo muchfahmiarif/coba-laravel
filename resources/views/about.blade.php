@@ -8,7 +8,8 @@
 </head>
 <body>
   <h1>Hello About</h1>
-  <img src="/img/fahmi.jpg" alt="Fahmi Arif" width="200">
-  <script src="/js/script.js"></script>
+  <h3>{{$name}}</h3>
+  <p>{{$email}}</p>
+  <img src="/img/{{$image}}" alt="{{$name}}" width="200">
 </body>
 </html>
