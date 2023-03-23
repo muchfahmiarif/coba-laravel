@@ -1,17 +1,33 @@
 ## Post Model
 
-Membuat model terdapat 2 cara yaitu :
+###### Membuat model terdapat 2 cara yaitu :
 1. Menggunakan CLI
    gunakan perintah 
    ```bash
    php artisan make:model Post -m
    ```
-    -m digunakan untuk membuat migration file
+    `-m` digunakan untuk membuat migration file
+    tambahkan keyword `help` untuk melihat semua perintah yang tersedia, contoh : `php artisan help make:model`
 
 2. Menggunakan artisan
    tekan tombol `ctrl+shift+p` pada vscode dan akan muncul command palette, kemudian ketik `artisan` dan pilih `Artisan: Make Model` dan akan muncul dialog untuk membuat model, isikan nama model dan pilih `Create Migration` untuk membuat migration file
 
 Pemberian nama pada model menggunakan CapitalizeCase yang bersifat `singular` dan otomatis akan dibuatkan file migration dengan huruf kecil semua dengan `plural` pada folder `database/migrations`
+
+###### Menambahkan data pada database
+Untuk menambahkan mass assignment pada model, tambahkan property `$guarded = ['id']` pada model sehingga kolom `id` tidak boleh diisi, contoh :
+```php
+protected $guarded = ['id'];
+```
+Contoh menambahkan mass assignment pada model :
+```bash
+Post::create([
+  'title' => 'Post 1',
+  'slug' => 'post-1',
+  'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
+  'body' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi ullam recusandae molestias voluptatum corrupti, repudiandae quaerat facere odit illo porro explicabo dolorem laborum, ad maiores delectus soluta debitis illum officia minus adipisci iste aspernatur! Ipsam, cupiditate id velit a voluptate aspernatur delectus perspiciatis obcaecati, laudantium voluptatibus unde! Magnam iste deleniti ullam quaerat, aliquam vero dolore iure eligendi? Molestiae temporibus accusamus consectetur nobis inventore itaque dolore enim corrupti. Inventore eveniet cupiditate maiores corrupti officia ipsum? Reiciendis ducimus ipsum minima accusamus, veritatis, quasi repudiandae impedit voluptatum deleniti ex eaque ad, placeat expedita iste debitis nostrum blanditiis illo at nemo cupiditate nisi harum?'
+])
+```
 
 
 
