@@ -1,6 +1,6 @@
 ## Post Model
 
-###### Membuat model terdapat 2 cara yaitu :
+##### Membuat model terdapat 2 cara yaitu :
 1. Menggunakan CLI
    gunakan perintah 
    ```bash
@@ -14,7 +14,7 @@
 
 Pemberian nama pada model menggunakan CapitalizeCase yang bersifat `singular` dan otomatis akan dibuatkan file migration dengan huruf kecil semua dengan `plural` pada folder `database/migrations`
 
-###### Menambahkan data pada database
+##### Menambahkan data pada database
 Untuk menambahkan mass assignment pada model, tambahkan property `$guarded = ['id']` pada model sehingga kolom `id` tidak boleh diisi, contoh :
 ```php
 protected $guarded = ['id'];
@@ -29,6 +29,29 @@ Post::create([
 ])
 ```
 
+##### Route Model Binding
+Route model binding adalah fitur yang memungkinkan kita untuk mengambil data dari database berdasarkan parameter yang dikirimkan melalui URL, contoh :
+```php
+Route::get('/posts/{post}', function (Post $post) {
+  return view('posts.show', [
+    'post' => $post
+  ]);
+});
+```
+
+##### Mengubah link tiap post menggunakan slug
+Dengan cara ubah route menjadi :
+```php
+Route::get('/posts/{post:slug}', function (Post $post) {
+  return view('posts.show', [
+    'post' => $post
+  ]);
+});
+```
+Kemudian ubah link pada file `index.blade.php` menjadi :
+```php
+<a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
+```
 
 
 <p align="center">
