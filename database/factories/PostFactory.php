@@ -25,7 +25,7 @@ class PostFactory extends Factory
                     -> map(function ($p) {
                         return "<p>$p</p>";
                     }) -> implode(''), // akan menghasilkan 10 sampai 15 paragraf secara random
-            'category_id' => mt_rand(1,2),
+            'category_id' => mt_rand(1,3),
             'user_id' => mt_rand(1,5),
         ];
     }
