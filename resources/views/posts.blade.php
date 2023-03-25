@@ -1,7 +1,18 @@
 @extends('layouts.main')
 
 @section('container')
-  <h1 class="mb-5">{{ $title }}</h1>
+  <h1 class="mb-3 text-center">{{ $title }}</h1>
+
+  <div class="row justify-content-center mb-3">
+    <div class="col-md-6">
+      <form action="/posts" method="GET">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search..." name="search">
+          <button class="btn btn-success" type="submit">Button</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   @if ($posts->count())
   <div class="card mb-3">
@@ -14,9 +25,6 @@
       <p class="card-text"><small class="text-body-secondary">{{ $posts[0]->created_at->diffForHumans() }}</small></p> {{-- diffForHumans adalah library carbon untuk mengatur waktu dan sudah ada di laravel --}}
     </div>
   </div>
-  @else
-    <p class="text-center fs-4">No Post Found.</p>
-  @endif
 
   <div class="container">
     <div class="row">
@@ -48,5 +56,9 @@
       <a href="/posts/{{$post->slug}}" class="text-decoration-none">Read More...</a>
     </article>
   @endforeach --}}
+
+  @else
+    <p class="text-center fs-4">No Post Found.</p>
+  @endif
 
 @endsection
