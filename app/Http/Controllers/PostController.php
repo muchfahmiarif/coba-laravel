@@ -9,10 +9,10 @@ class PostController extends Controller
 {
     public function index()
     {
+        dd(request('search'));
         return view('posts', [
             'title' => 'All Post',
             'active' => 'posts',
-            // 'posts' => Post::all()
             'posts' => Post::latest()->get() // mengurutkan post dari yang terbaru dan melakukan eager loading
         ]);
     }
