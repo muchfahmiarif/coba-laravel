@@ -18,6 +18,12 @@ class Post extends Model
             return $query->where('title', 'like', '%' . $search . '%')
                          ->orWhere('body', 'like', '%' . $search . '%');
         }); // menggunakan when() untuk menggantikan if() di atas
+
+        $query->when(isset($filters['category']) ? $filters['category'] : false, function($query, $category) {
+            return $query->whereHas('category', function($query) use ($category) {
+                $query->where('slug', $category);
+            });
+        });
     }
 
     public function category()

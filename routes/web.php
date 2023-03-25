@@ -42,6 +42,7 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::get('/categories', function () {
     return view('categories', [
         'title' => 'Post Categories',
+        'active' => 'posts',
         'categories' => Category::all(),
     ]);
 });
@@ -49,6 +50,7 @@ Route::get('/categories', function () {
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view ('posts', [
         'title' => "Post by Category : $category->name",
+        'active' => 'posts',
         'posts' => $category->posts->load('category', 'author'),
         // 'category' => $category,
     ]);
@@ -57,6 +59,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 Route::get('/authors/{author:username}', function(User $author) {
     return view('posts', [
         'title' => "Post By Author : $author->name",
+        'active' => 'posts',
         'posts' => $author->posts->load('category', 'author'),
     ]);
 });
