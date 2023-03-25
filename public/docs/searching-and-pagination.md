@@ -49,6 +49,55 @@ public function index()
 }
 ```
 
+##### Melakukan query search pada model dengan eloquent
+Untuk melakukan query search pada model dengan eloquent menggunakan [query scope](https://laravel.com/docs/9.x/eloquent#local-scopes) maka pindahkan kode berikut ke `Post.php` pada folder `app/Models`:
+```php
+public function scopeFilter($query)
+{
+  if(request('search')) {
+    return $query->where('title', 'like', '%' . request('search') . '%')
+                  ->orWhere('body', 'like', '%' . request('search') . '%');
+  }
+}
+```
+dan pada `PostController.php` pada folder `app/Http/Controllers` tambahkan kode berikut:
+```php
+public function index()
+{
+  return view('posts', [
+    'posts' => Post::latest()->filter()->get();
+  ]);
+}
+```
+`filter()` berfungsi untuk menjalankan query scope yang telah dibuat pada model yaitu `scopeFilter()`.
+
+##### `request('search')` pada model `Post.php` kerjaannya Controller bukan model
+Untuk melakukan `request('search')` pada Controller maka perlu menggunakan `isset` pada model `Post.php` pada folder `app/Models`:
+```php
+public function scopeFilter($query, array $filters)
+{
+  if(isset($filters['search']) ? $filters['search'] : false) {
+    return $query->where('title', 'like', '%' . request('search') . '%')
+                  ->orWhere('body', 'like', '%' . request('search') . '%');
+  }
+}
+```
+- array `$filters` berfungsi untuk menampung banyak nilai yang diinputkan pada form search, nantinya search tidak hanya kata dari judul atau body saja tetapi juga dari author, category, dan tag.
+- `isset(request('search')) ? request('search') : false` berfungsi untuk mengecek apakah ada nilai yang diinputkan pada form search atau tidak jika ada maka akan menjalankan query search pada baris kode dibawahnya dan jika tidak maka tidakn akan menjalankan kode dibawahnya.
+- Ubah kode `request('search')` pada `return $query....` menjadi `$filters['search']`
+
+Pada `PostController.php` pada folder `app/Http/Controllers` edit kode menjadi:
+```php
+public function index()
+{
+  return view('posts', [
+    'posts' => Post::latest()->filter(request(['search']))->get();
+  ]);
+}
+```
+- `request(['search'])` berfungsi untuk menampung nilai yang diinputkan pada form search.
+
+
 <p align="center">
   <a href="../../README.md">
     <img src="https://img.shields.io/static/v1?label=Home&message=%F0%9F%8F%A1&color=skyblue">
