@@ -17,10 +17,11 @@
               <a class="nav-link {{($active === 'posts' ? 'active' : '')}}" href="/posts">Blog</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="/login" class="nav-link"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

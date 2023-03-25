@@ -97,6 +97,24 @@ public function index()
 ```
 - `request(['search'])` berfungsi untuk menampung nilai yang diinputkan pada form search.
 
+##### Menambahkan pagination dan use bootstrap
+Untuk menambahkan pagination dengan menambahkan methode `paginate()` pada `PostController.php` dan tambahkan jumlah data per halaman contoh :
+```php
+public function index()
+{
+  return view('posts', [
+    'posts' => Post::latest()->filter(request(['search']))->paginate(5)->withQueryString();
+  ]);
+}
+```
+- angka `5` berfungsi untuk menampilkan 5 data per halaman.
+- method `withQueryString()` berfungsi untuk menampilkan query string pada url sehingga ketika user pilih category atau tag maka query string akan tetap ada.
+
+Dan untuk menambahkan link pagination pada `posts.blade.php` pada folder `resources/views/posts` tambahkan kode berikut:
+```php
+{{ $posts->links() }}
+```
+Secara otomatis bootstrap akan menambahkan link pagination pada halaman akan tetapi tampilan pagination menggunakan tailwind maka perlu menggunakan bootstrap, dapat dilihat [disini](https://laravel.com/docs/9.x/pagination#using-bootstrap)
 
 <p align="center">
   <a href="../../README.md">
