@@ -9,11 +9,18 @@ class PostController extends Controller
 {
     public function index()
     {
-        dd(request('search'));
+        // dd(request('search'));
+
+        $post = Post::latest();
+        if(request('search')) {
+            $post->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('body', 'like', '%' . request('search') . '%');
+        }
+
         return view('posts', [
             'title' => 'All Post',
             'active' => 'posts',
-            'posts' => Post::latest()->get() // mengurutkan post dari yang terbaru dan melakukan eager loading
+            'posts' => $post->get() // mengurutkan post dari yang terbaru dan melakukan eager loading
         ]);
     }
 
