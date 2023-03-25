@@ -3,8 +3,8 @@
 @section('container')
   <article>
     <h2>{{ $post->title }}</h2>
-    <h5>By {{ $post->user->name }} in <a href="/categories/{{$post->category->slug}}">{{ $post->category->name }}</a></h5>
+    <h5>By <a href="/authors/{{ $post->author->username }}" class="text-decoration-none">{{ $post->author->name }}</a> in <a href="/categories/{{$post->category->slug}}" class="text-decoration-none">{{ $post->category->name }}</a></h5>
     {!! $post->body !!}
   </article>
-  <a href="/posts">Back to blog</a>
+  <a href="/posts" class="text-decoration-none pt-3 d-block">Back to blog</a>
 @endsection
