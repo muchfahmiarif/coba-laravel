@@ -14,7 +14,7 @@ class PostController extends Controller
         return view('posts', [
             'title' => 'All Post',
             'active' => 'posts',
-            'posts' => Post::latest()->filter(request(['search']))->get() // mengurutkan post dari yang terbaru dan melakukan eager loading
+            'posts' => Post::latest()->filter(request(['search', 'category']))->get() // mengurutkan post dari yang terbaru dan melakukan eager loading
         ]);
     }
 
