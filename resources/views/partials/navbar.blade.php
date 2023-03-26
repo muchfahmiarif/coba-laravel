@@ -19,7 +19,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="/login" class="nav-link"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+              <a href="/login" class="nav-link {{($active === 'login' ? 'active' : '')}}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
             </li>
           </ul>
         </div>
