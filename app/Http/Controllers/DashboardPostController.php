@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class DashboardPostController extends Controller
 {
@@ -49,6 +50,9 @@ class DashboardPostController extends Controller
             'category_id' => 'required',
             'body' => 'required',
         ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body, 100, '...')); // strip_tags() untuk menghilangkan tag html yang ada pada trix editor
     }
 
     /**
