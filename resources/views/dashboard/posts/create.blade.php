@@ -6,7 +6,7 @@
 </div>
 
 <div class="col-lg-8">
-  <form method="POST" action="/dashboard/posts" class="mb-5"> {{-- Secara otomatis akan mengarah ke methode store pada resource dashboard controller --}}
+  <form method="POST" action="/dashboard/posts" class="mb-5" enctype="multipart/form-data"> {{-- Secara otomatis akan mengarah ke methode store pada resource dashboard controller --}}
     @csrf
 
     <div class="mb-3">
@@ -39,6 +39,11 @@
           <option value="{{ $category->id }}">{{ $category->name }}</option>
         @endforeach
       </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Default file input example</label>
+      <input class="form-control" type="file" id="image" name="image">
     </div>
     
     <div class="mb-3">
