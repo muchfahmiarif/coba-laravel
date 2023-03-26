@@ -27,9 +27,13 @@ class RegisterController extends Controller
         // dd('success');
 
         // Pilih salah satu bcrypt atau Hash::make
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        $validatedData['password'] = Hash::make($validatedData, ['password']);
+        // $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData['password'] = Hash::make($validatedData['password']);
         
         User::create($validatedData);
+
+        $request->session()->flash('success', 'Your account has been created.');
+        
+        return redirect('/login');
     }
 }
