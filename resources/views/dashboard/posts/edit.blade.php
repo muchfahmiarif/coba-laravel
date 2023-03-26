@@ -52,7 +52,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Update Post</button>
-    <a href="/dashboard/posts" class="btn btn-warning">Back to list post</a>
+    <a href="/dashboard/posts/{{ $post->slug }}" class="btn btn-warning">Back to post</a>
   </form>
 </div>
 
