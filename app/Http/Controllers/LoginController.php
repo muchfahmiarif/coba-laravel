@@ -34,4 +34,16 @@ class LoginController extends Controller
 
         return back()->with('loginError', 'Login Failed!');
     }
+
+    // Docs : https://laravel.com/docs/9.x/authentication#logging-out
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }
