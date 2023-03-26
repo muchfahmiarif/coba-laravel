@@ -32,8 +32,8 @@
         <td>{{ $post->category->name }}</td>
         <td>
           <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info"><span data-feather="eye" class="align-text-bottom"></span></a>
-          <a href="/dashboard/posts/{{ $post->id }}" class="badge bg-warning"><span data-feather="edit" class="align-text-bottom"></span></a>
-          <form action="/dashboard/posts" method="POST" class="d-inline"> {{-- Request methode pada form hanya bisa get dan post --}}
+          <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning"><span data-feather="edit" class="align-text-bottom"></span></a>
+          <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline"> {{-- Request methode pada form hanya bisa get dan post --}}
             @method('delete') {{-- Secara otomatis akan mengarah ke methode destroy pada resource dashboard controller --}}
             @csrf
             <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')">
