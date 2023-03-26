@@ -5,7 +5,7 @@
   <h1 class="h2">My Posts</h1>
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive col-lg-8">
   <table class="table table-striped table-sm">
     <thead>
       <tr>
@@ -16,12 +16,14 @@
       </tr>
     </thead>
     <tbody>
+      @foreach ($posts as $post)
       <tr>
-        <td>1,001</td>
-        <td>random</td>
-        <td>data</td>
+        <td>{{ $loop->iteration }}</td> {{-- Docs : https://laravel.com/docs/9.x/blade#loops --}}
+        <td>{{ $post->title }}</td>
+        <td>{{ $post->category->name }}</td>
         <td>placeholder</td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 </div>
