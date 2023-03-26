@@ -52,7 +52,11 @@ class DashboardPostController extends Controller
         ]);
 
         $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body, 100, '...')); // strip_tags() untuk menghilangkan tag html yang ada pada trix editor
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body, 100)); // strip_tags() untuk menghilangkan tag html yang ada pada trix editor
+
+        Post::create($validatedData);
+
+        return redirect('/dashboard/posts')->with('success', 'Post created successfully');
     }
 
     /**

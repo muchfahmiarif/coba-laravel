@@ -6,7 +6,7 @@
 </div>
 
 <div class="col-lg-8">
-  <form method="POST" action="/dashboard/posts"> {{-- Secara otomatis akan mengarah ke methode store pada resource dashboard controller --}}
+  <form method="POST" action="/dashboard/posts" class="mb-5"> {{-- Secara otomatis akan mengarah ke methode store pada resource dashboard controller --}}
     @csrf
 
     <div class="mb-3">
@@ -51,6 +51,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Create Post</button>
+    <a href="/dashboard/posts" class="btn btn-warning">Back to list post</a>
   </form>
 </div>
 
