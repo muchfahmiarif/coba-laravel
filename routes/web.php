@@ -38,7 +38,7 @@ Route::get('/about', function () {
 Route::get('/posts', [PostController::class, 'index']);
 
 // halaman single post
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']); // Route Model Binding ini yang dicari id tetapi kita ingin mencari slug
 
 Route::get('/categories', function () {
     return view('categories', [
@@ -63,4 +63,5 @@ Route::get('/dashboard', function() {
     ]);
 })->middleware('auth');
 
+// Pake resourse tidak bisa menggunakan route model binding
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');

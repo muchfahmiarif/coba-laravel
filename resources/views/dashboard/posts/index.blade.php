@@ -21,7 +21,11 @@
         <td>{{ $loop->iteration }}</td> {{-- Docs : https://laravel.com/docs/9.x/blade#loops --}}
         <td>{{ $post->title }}</td>
         <td>{{ $post->category->name }}</td>
-        <td>placeholder</td>
+        <td>
+          <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info"><span data-feather="eye" class="align-text-bottom"></span></a>
+          <a href="/dashboard/posts/{{ $post->id }}" class="badge bg-warning"><span data-feather="edit" class="align-text-bottom"></span></a>
+          <a href="/dashboard/posts/{{ $post->id }}" class="badge bg-danger"><span data-feather="x-circle" class="align-text-bottom"></span></a>
+        </td>
       </tr>
       @endforeach
     </tbody>
