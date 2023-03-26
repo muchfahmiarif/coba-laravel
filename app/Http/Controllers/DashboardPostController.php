@@ -44,6 +44,7 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
+        ddd($request); // ddd = dump die die, untuk menampilkan data yang dikirimkan oleh form
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
