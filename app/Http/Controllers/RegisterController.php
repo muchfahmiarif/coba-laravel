@@ -32,8 +32,6 @@ class RegisterController extends Controller
         
         User::create($validatedData);
 
-        $request->session()->flash('success', 'Your account has been created.');
-        
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Your account has been created.');
     }
 }
