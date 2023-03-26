@@ -64,4 +64,5 @@ Route::get('/dashboard', function() {
 })->middleware('auth');
 
 // Pake resourse tidak bisa menggunakan route model binding
+Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
