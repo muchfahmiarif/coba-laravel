@@ -22,16 +22,16 @@ class LoginController extends Controller
             'email' => 'required|email:dns',
             'password' => 'required',
         ]);
-        dd('success');
+        // dd('success');
 
         // cek credential
-        // $credentials = $request->only('email', 'password');
-        // if (Auth::attempt($credentials)) {
-        //     $request->session()->regenerate();
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        //     return redirect()->intended('dashboard');
-        // }
+            return redirect()->intended('/dashboard');
+        }
 
-        // return back()->with('loginError', 'Login gagal!');
+        return back()->with('loginError', 'Login Failed!');
     }
 }
