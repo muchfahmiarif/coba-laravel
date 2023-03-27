@@ -44,7 +44,10 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        ddd($request); // ddd = dump die die, untuk menampilkan data yang dikirimkan oleh form
+        // ddd($request); // ddd = dump die die, untuk menampilkan data yang dikirimkan oleh form
+
+        return $request->file('image')->store('post-images');
+
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
